@@ -34,15 +34,18 @@ public class Evaluacion {
                 if (igual(instr.get(1), instr.get(2))){
                     return instr.get(3);
                 }
-            } else if (instr.contains("<")){
+            } 
+            if (instr.contains("<")){
                 if (menorque(instr.get(1), instr.get(2))){
                     return instr.get(3);
                 }
-            } else if (instr.contains(">")){
+            } 
+            if (instr.contains(">")){
                 if (mayorque(instr.get(1), instr.get(2))){
                     return instr.get(3);
                 }
-            } else if (i == listTemp2.size()){
+            }  
+            if (i == listTemp2.size()){
                 return listTemp2.get(i);
             }
             i++;
