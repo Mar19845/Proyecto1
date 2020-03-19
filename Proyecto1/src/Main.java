@@ -128,7 +128,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
-      ArrayList<Lexer.Token> tokens = Lexer.lex("11 + 22 - 33 * AAA = () . {} defun");
+      ArrayList<Lexer.Token> tokens = Lexer.lex(lineas);
 		for(Lexer.Token token:tokens) {
 			System.out.println(token);
 		}
