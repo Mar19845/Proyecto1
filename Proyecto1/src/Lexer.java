@@ -28,16 +28,7 @@ public class Lexer {
 			this.pattern = pattern;
 		}
 	}
-	public static String Variables(String input){
-            StringTokenizer tokenizador = new StringTokenizer (input, "  ");
-             ArrayList<String> Prueba = new ArrayList<>();
-            String variable = "";
-            while(tokenizador.hasMoreTokens()){
-                variable = variable + tokenizador.nextToken();
-            }
-            
-            return variable;
-        }
+	
 	public static class Token{
 		public TokenType type;
 		public String data;
