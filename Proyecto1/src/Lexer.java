@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -16,7 +17,7 @@ public class Lexer {
 	public static enum TokenType{
 		NUMBER("-?[0-9]+"), BINARYOP("[=|*|/|+|-]"), WHITESPACE("[\t\f\r\n]"),
 		LETTER("[a-zA-Z]"), LPAREN("[(]"), RPAREN("[)]"), IF("[if]"), COMMA("[,]"), LBRACE("[{]"),
-		RBRACE("[}]"), SEMICOLON("[;]"), PERIOD("[.]");
+		RBRACE("[}]"), SEMICOLON("[;]"), PERIOD("[.]"),DEFUN("[defun]");
 		
 				
 		public final String pattern;
@@ -92,10 +93,10 @@ public class Lexer {
 				tokens.add(new Token(TokenType.PERIOD, matcher.group(TokenType.PERIOD.name())));
 				continue;
 			}
-			/**else if(matcher.group(TokenType.DEFUN.name())!=null) {
+			else if(matcher.group(TokenType.DEFUN.name())!=null) {
 				tokens.add(new Token(TokenType.DEFUN, matcher.group(TokenType.DEFUN.name())));
 				continue;
-			}*/
+			}
 			
 		}
 		
@@ -103,9 +104,9 @@ public class Lexer {
 		return tokens;
 	}
 	
-	/**
+	
 	public static void main(String[] args) {
-		String input = "11 + 22 - 33 * AAA = () . {} defun";
+		String input = "11 + 22 - 33 * AAA = () . {} defun \n prueba";
 		
 		//Crear e imprimir tokens
 		ArrayList<Token> tokens = lex(input);
@@ -113,5 +114,5 @@ public class Lexer {
 			System.out.println(token);
 		}
 	}
-        */
+        
 }

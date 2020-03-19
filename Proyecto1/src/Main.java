@@ -3,22 +3,24 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 /**
- * 
- * @author Juan Marroquin
- */
-public class Main extends javax.swing.JFrame {
 
+public class Main extends javax.swing.JFrame {
+    Token lex ;
+    ArrayList<String>datos = new ArrayList<>();
+    public String lineas ;
     private final JFileChooser openFile;
     private BufferedReader lector;
+    String FileName;
     public Main() {
         initComponents();
         openFile = new JFileChooser();
         openFile.setCurrentDirectory(new File("c:\\temp"));
         openFile.setFileFilter(new FileNameExtensionFilter("Txt files","txt"));
+   
     }
 
    
@@ -29,6 +31,7 @@ public class Main extends javax.swing.JFrame {
         botonBuscar = new javax.swing.JButton();
         labelNombreArchivo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        botonEjecutar = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -43,25 +46,36 @@ public class Main extends javax.swing.JFrame {
 
         labelNombreArchivo.setBackground(new java.awt.Color(255, 255, 255));
         labelNombreArchivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNombreArchivo.setText("choose file");
+        labelNombreArchivo.setText("......");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Bienvenidos al Interpretador de LISP");
+
+        botonEjecutar.setText("Ejecutar");
+        botonEjecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEjecutarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botonBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(labelNombreArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2)
+                        .addGap(0, 20, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(botonEjecutar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(labelNombreArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
-                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +86,9 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonBuscar)
                     .addComponent(labelNombreArchivo))
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(botonEjecutar)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -85,21 +101,41 @@ public class Main extends javax.swing.JFrame {
             try{
                 //lector = FileReader.read(openFile.getSelectedFile());
                 lector = new BufferedReader(new FileReader(openFile.getSelectedFile()));
-                labelNombreArchivo.setText(openFile.getName());
+                FileName = openFile.getName(openFile.getSelectedFile());
+                //labelNombreArchivo.setText(FileName);
                 labelNombreArchivo.setText("si funciona");
+                while(lector.ready()){
+                    lineas = lector.readLine();
+                    datos.add(lineas);
+                }
+                //lineas = lector.readLine();
             }catch(IOException io){
                 labelNombreArchivo.setText("Fallo la carga del archivo");
             }
         }else{
             labelNombreArchivo.setText("No se escogio ningun archivo");
         }
+        for (String c:datos){
+            System.out.println(c);  
+        }
+        
+        //System.out.println(datos);
+        /*ArrayList<Token> tokens = lex.lex(lineas);
+        for(Token token:tokens) {
+         System.out.println(token);
+        }*/
         
     }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
+      
+    }//GEN-LAST:event_botonEjecutarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -110,8 +146,12 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonEjecutar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelNombreArchivo;
     // End of variables declaration//GEN-END:variables
+ 
+    
 }
+**/
