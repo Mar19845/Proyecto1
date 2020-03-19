@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -17,8 +16,7 @@ public class Lexer {
 	public static enum TokenType{
 		NUMBER("-?[0-9]+"), BINARYOP("[=|*|/|+|-]"), WHITESPACE("[\t\f\r\n]"),
 		LETTER("[a-zA-Z]"), LPAREN("[(]"), RPAREN("[)]"), IF("[if]"), COMMA("[,]"), LBRACE("[{]"),
-		RBRACE("[}]"), SEMICOLON("[;]"), PERIOD("[.]"),DEFUN("[defun]"), CAR("[car]"),CDR("[cdr]"),CONS("[cons]"),
-                ENDP("[endp]"),EQ("[eq"),EQUAL("[equal]"),LIST("[list]"),QUOTE("[quote]"),COND("[cond]");
+		RBRACE("[}]"), SEMICOLON("[;]"), PERIOD("[.]");
 		
 				
 		public final String pattern;
@@ -94,46 +92,10 @@ public class Lexer {
 				tokens.add(new Token(TokenType.PERIOD, matcher.group(TokenType.PERIOD.name())));
 				continue;
 			}
-			else if(matcher.group(TokenType.DEFUN.name())!=null) {
+			/**else if(matcher.group(TokenType.DEFUN.name())!=null) {
 				tokens.add(new Token(TokenType.DEFUN, matcher.group(TokenType.DEFUN.name())));
 				continue;
-			}
-                        else if(matcher.group(TokenType.CAR.name())!=null) {
-				tokens.add(new Token(TokenType.CAR, matcher.group(TokenType.CAR.name())));
-				continue;
-			}
-                        else if(matcher.group(TokenType.CDR.name())!=null) {
-				tokens.add(new Token(TokenType.CDR, matcher.group(TokenType.CDR.name())));
-				continue;
-			}
-                        else if(matcher.group(TokenType.COND.name())!=null) {
-				tokens.add(new Token(TokenType.COND, matcher.group(TokenType.COND.name())));
-				continue;
-			}
-                        else if(matcher.group(TokenType.CONS.name())!=null) {
-				tokens.add(new Token(TokenType.CONS, matcher.group(TokenType.CONS.name())));
-				continue;
-			}
-                        else if(matcher.group(TokenType.ENDP.name())!=null) {
-				tokens.add(new Token(TokenType.ENDP, matcher.group(TokenType.ENDP.name())));
-				continue;
-			}
-                        else if(matcher.group(TokenType.EQ.name())!=null) {
-				tokens.add(new Token(TokenType.EQ, matcher.group(TokenType.EQ.name())));
-				continue;
-			}
-                        else if(matcher.group(TokenType.EQUAL.name())!=null) {
-				tokens.add(new Token(TokenType.EQUAL, matcher.group(TokenType.EQUAL.name())));
-				continue;
-			}
-                        else if(matcher.group(TokenType.LIST.name())!=null) {
-				tokens.add(new Token(TokenType.LIST, matcher.group(TokenType.LIST.name())));
-				continue;
-			}
-                        else if(matcher.group(TokenType.QUOTE.name())!=null) {
-				tokens.add(new Token(TokenType.QUOTE, matcher.group(TokenType.QUOTE.name())));
-				continue;
-			}
+			}*/
 			
 		}
 		
@@ -143,7 +105,7 @@ public class Lexer {
 	
 	/**
 	public static void main(String[] args) {
-		String input = "11 + 22 - 33 * AAA = () . {} defun \n prueba";
+		String input = "11 + 22 - 33 * AAA = () . {} defun";
 		
 		//Crear e imprimir tokens
 		ArrayList<Token> tokens = lex(input);
