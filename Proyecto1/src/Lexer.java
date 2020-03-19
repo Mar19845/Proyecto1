@@ -9,13 +9,13 @@ import java.util.regex.Matcher;
  * Number
 	`-?[0-9]+` De menos infinino a mas infinito.
 	Binary Operator
-	`[*|/|+|-]` Todas las operaciones aritm�ticas b�sicas.
+	`[*|/|+|-]` Todas las operaciones aritmï¿½ticas bï¿½sicas.
 	Whitespace
-	`[ \t\f\r\n]+` Espcios en blanco, tabs. Ser�n ignorados.
+	`[ \t\f\r\n]+` Espcios en blanco, tabs. Serï¿½n ignorados.
  */
 public class Lexer {
 	public static enum TokenType{
-		NUMBER("-?[0-9]+"), OPERACIONES("[=|*|/|+|-]"), WHITESPACE("[\t\f\r\n]"),
+		NUMBER("-?[0-9]+"), OPERACIONES("[=|*|/|+|-]"), WHITESPACE("[ ]"), LITERAL("[a-zA-Z0-9]+"),
 		LETTER("[a-zA-Z]"), PARENTESIS("[()]"), IF("[if]"), COMMA("[,]"), BRACE("[{}]"),
 		COMENTARIO("[;]"), PERIOD("[.]"), DEFUN("[defunDEFUN]"), CAR("[car]"), CDR("[cdr]"),
                 COND("[condCOND]"), CONS("cons"), ENDP("[endp]"), EQ("eq"), EQUAL("[equal]"), LIST("[list]"), QUOTE("[quote]");
@@ -48,7 +48,7 @@ public class Lexer {
 		//Los tokens a retornar
 		ArrayList<Token> tokens = new ArrayList<>();
 		
-		//L�gica lexer
+		//Lï¿½gica lexer
 		StringBuffer tokenPatternsBuffer = new StringBuffer();
 		for(TokenType tokenType : TokenType.values())
 			tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
@@ -64,10 +64,14 @@ public class Lexer {
 			}else if(matcher.group(TokenType.WHITESPACE.name())!=null) {
                             //Se ignoran los whitespace y tabs
 
+			}		
+             else if(matcher.group(TokenType.LETTER.name())!=null) {
+                  tokens.add(new Token(TokenType.LETTER, matcher.group(TokenType.LETTER.name())));            	
 			}
-                        else if(matcher.group(TokenType.LETTER.name())!=null) {
-				tokens.add(new Token(TokenType.LETTER, matcher.group(TokenType.LETTER.name())));
-			}
+            else if(matcher.group(TokenType.LITERAL.name()) != null) {
+				tokens.add(new Token(TokenType.LITERAL, matcher.group(TokenType.LITERAL.name())));
+				continue;
+            }
 			else if(matcher.group(TokenType.PARENTESIS.name())!=null) {
 				tokens.add(new Token(TokenType.PARENTESIS, matcher.group(TokenType.PARENTESIS.name())));
 			}else if(matcher.group(TokenType.IF.name())!=null) {
