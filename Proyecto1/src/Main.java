@@ -10,6 +10,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Main extends javax.swing.JFrame {
     Lexer lex;
+    String codigo;
     ArrayList<String>datos = new ArrayList<>();
     public String lineas ;
     private final JFileChooser openFile;
@@ -108,7 +109,8 @@ public class Main extends javax.swing.JFrame {
                     lineas = lector.readLine();
                     datos.add(lineas);
                 }
-                //lineas = lector.readLine();
+                codigo = datos.toString();
+              
             }catch(IOException io){
                 labelNombreArchivo.setText("Fallo la carga del archivo");
             }
@@ -128,7 +130,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
-      ArrayList<Lexer.Token> tokens = Lexer.lex(lineas);
+      ArrayList<Lexer.Token> tokens = Lexer.lex(codigo);
 		for(Lexer.Token token:tokens) {
 			System.out.println(token);
 		}

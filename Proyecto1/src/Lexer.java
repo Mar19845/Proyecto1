@@ -3,7 +3,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 /**
  * @author Usuario Dell
- * Funci�n Lexer trabajar� con un String
+ * Funcion Lexer trabajar con un String
  * Se deben definir los tipos de tokens a esperar
  * Number
 	`-?[0-9]+` De menos infinino a mas infinito.
@@ -14,9 +14,9 @@ import java.util.regex.Matcher;
  */
 public class Lexer {
 	public static enum TokenType{
-		NUMBER("-?[0-9]+"), BINARYOP("[=|*|/|+|-]"), WHITESPACE("[\t\f\r\n]"),
-		LETTER("[a-zA-Z]"), LPAREN("[(]"), RPAREN("[)]"), IF("[if]"), COMMA("[,]"), LBRACE("[{]"),
-		RBRACE("[}]"), SEMICOLON("[;]"), PERIOD("[.]"), DEFUN("[defun]"), CAR("[car]"), CDR("[cdr]"),
+		NUMBER("-?[0-9]+"), OPERACIONES("[=|*|/|+|-]"), WHITESPACE("[\t\f\r\n]"),
+		LETTER("[a-zA-Z]"), PARENTESIS("[()]"), IF("[if]"), COMMA("[,]"), BRACE("[{}]"),
+		SEMICOLON("[;]"), PERIOD("[.]"), DEFUN("[defun]"), CAR("[car]"), CDR("[cdr]"),
                 COND("[cond]"), CONS("cons"), ENDP("[endp]"), EQ("eq"), EQUAL("[equal]"), LIST("[list]"), QUOTE("[quote]");
 		
 				
@@ -57,26 +57,22 @@ public class Lexer {
 		while(matcher.find()) {
 			if(matcher.group(TokenType.NUMBER.name()) != null) {
 				tokens.add(new Token(TokenType.NUMBER, matcher.group(TokenType.NUMBER.name())));
-			}else if(matcher.group(TokenType.BINARYOP.name())!=null) {
-				tokens.add(new Token(TokenType.BINARYOP, matcher.group(TokenType.BINARYOP.name())));
+			}else if(matcher.group(TokenType.OPERACIONES.name())!=null) {
+				tokens.add(new Token(TokenType.OPERACIONES, matcher.group(TokenType.OPERACIONES.name())));
 			}else if(matcher.group(TokenType.WHITESPACE.name())!=null) {
                             //Se ignoran los whitespace y tabs
 
 			}else if(matcher.group(TokenType.LETTER.name())!=null) {
 				tokens.add(new Token(TokenType.LETTER, matcher.group(TokenType.LETTER.name())));
 			}
-			else if(matcher.group(TokenType.LPAREN.name())!=null) {
-				tokens.add(new Token(TokenType.LPAREN, matcher.group(TokenType.LPAREN.name())));
-			}else if(matcher.group(TokenType.RPAREN.name())!=null) {
-				tokens.add(new Token(TokenType.RPAREN, matcher.group(TokenType.RPAREN.name())));
+			else if(matcher.group(TokenType.PARENTESIS.name())!=null) {
+				tokens.add(new Token(TokenType.PARENTESIS, matcher.group(TokenType.PARENTESIS.name())));
 			}else if(matcher.group(TokenType.IF.name())!=null) {
 				tokens.add(new Token(TokenType.IF, matcher.group(TokenType.IF.name())));
 			}else if(matcher.group(TokenType.COMMA.name())!=null) {
 				tokens.add(new Token(TokenType.COMMA, matcher.group(TokenType.COMMA.name())));
-			}else if(matcher.group(TokenType.LBRACE.name())!=null) {
-				tokens.add(new Token(TokenType.LBRACE, matcher.group(TokenType.LBRACE.name())));
-			}else if(matcher.group(TokenType.RBRACE.name())!=null) {
-				tokens.add(new Token(TokenType.RBRACE, matcher.group(TokenType.RBRACE.name())));
+			}else if(matcher.group(TokenType.BRACE.name())!=null) {
+				tokens.add(new Token(TokenType.BRACE, matcher.group(TokenType.BRACE.name())));
 			}else if(matcher.group(TokenType.SEMICOLON.name())!=null) {
 				tokens.add(new Token(TokenType.SEMICOLON, matcher.group(TokenType.SEMICOLON.name())));
 			}else if(matcher.group(TokenType.PERIOD.name())!=null) {
