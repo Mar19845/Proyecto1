@@ -130,10 +130,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
-      ArrayList<Lexer.Token> tokens = Lexer.lex(codigo);
+        String variable = Lexer.Variables(codigo);
+        ArrayList<Lexer.Token> tokens = Lexer.lex(variable);
 		for(Lexer.Token token:tokens) {
 			System.out.println(token);
 		}
+        
     }//GEN-LAST:event_botonEjecutarActionPerformed
 
     /**

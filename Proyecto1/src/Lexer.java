@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 /**
@@ -16,8 +17,9 @@ public class Lexer {
 	public static enum TokenType{
 		NUMBER("-?[0-9]+"), OPERACIONES("[=|*|/|+|-]"), WHITESPACE("[\t\f\r\n]"),
 		LETTER("[a-zA-Z]"), PARENTESIS("[()]"), IF("[if]"), COMMA("[,]"), BRACE("[{}]"),
-		SEMICOLON("[;]"), PERIOD("[.]"), DEFUN("[defun]"), CAR("[car]"), CDR("[cdr]"),
-                COND("[cond]"), CONS("cons"), ENDP("[endp]"), EQ("eq"), EQUAL("[equal]"), LIST("[list]"), QUOTE("[quote]");
+		COMENTARIO("[;]"), PERIOD("[.]"), DEFUN("[defunDEFUN]"), CAR("[car]"), CDR("[cdr]"),
+                COND("[condCOND]"), CONS("cons"), ENDP("[endp]"), EQ("eq"), EQUAL("[equal]"), LIST("[list]"), QUOTE("[quote]");
+                
 		
 				
 		public final String pattern;
@@ -26,7 +28,16 @@ public class Lexer {
 			this.pattern = pattern;
 		}
 	}
-	
+	public static String Variables(String input){
+            StringTokenizer tokenizador = new StringTokenizer (input, "  ");
+             ArrayList<String> Prueba = new ArrayList<>();
+            String variable = "";
+            while(tokenizador.hasMoreTokens()){
+                variable = variable + tokenizador.nextToken();
+            }
+            
+            return variable;
+        }
 	public static class Token{
 		public TokenType type;
 		public String data;
@@ -50,8 +61,8 @@ public class Lexer {
 		StringBuffer tokenPatternsBuffer = new StringBuffer();
 		for(TokenType tokenType : TokenType.values())
 			tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
-		Pattern tokenPatterns = Pattern.compile(new String(tokenPatternsBuffer.substring(1)));
-	
+		Pattern tokenPatterns = Pattern.compile(tokenPatternsBuffer.substring(1));
+                
 		//Relacionar tokens con su tipo
 		Matcher matcher = tokenPatterns.matcher(input);
 		while(matcher.find()) {
@@ -62,7 +73,8 @@ public class Lexer {
 			}else if(matcher.group(TokenType.WHITESPACE.name())!=null) {
                             //Se ignoran los whitespace y tabs
 
-			}else if(matcher.group(TokenType.LETTER.name())!=null) {
+			}
+                        else if(matcher.group(TokenType.LETTER.name())!=null) {
 				tokens.add(new Token(TokenType.LETTER, matcher.group(TokenType.LETTER.name())));
 			}
 			else if(matcher.group(TokenType.PARENTESIS.name())!=null) {
@@ -73,8 +85,8 @@ public class Lexer {
 				tokens.add(new Token(TokenType.COMMA, matcher.group(TokenType.COMMA.name())));
 			}else if(matcher.group(TokenType.BRACE.name())!=null) {
 				tokens.add(new Token(TokenType.BRACE, matcher.group(TokenType.BRACE.name())));
-			}else if(matcher.group(TokenType.SEMICOLON.name())!=null) {
-				tokens.add(new Token(TokenType.SEMICOLON, matcher.group(TokenType.SEMICOLON.name())));
+			}else if(matcher.group(TokenType.COMENTARIO.name())!=null) {
+				tokens.add(new Token(TokenType.COMENTARIO, matcher.group(TokenType.COMENTARIO.name())));
 			}else if(matcher.group(TokenType.PERIOD.name())!=null) {
 				tokens.add(new Token(TokenType.PERIOD, matcher.group(TokenType.PERIOD.name())));
 			}
