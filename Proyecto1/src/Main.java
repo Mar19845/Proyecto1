@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-/**
+
 
 public class Main extends javax.swing.JFrame {
     Token lex ;
@@ -154,4 +154,3 @@ public class Main extends javax.swing.JFrame {
  
     
 }
-**/
