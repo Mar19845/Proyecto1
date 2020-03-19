@@ -104,7 +104,7 @@ public class Lexer {
 		return tokens;
 	}
 	
-	
+	/**
 	public static void main(String[] args) {
 		String input = "11 + 22 - 33 * AAA = () . {} defun \n prueba";
 		
@@ -114,5 +114,5 @@ public class Lexer {
 			System.out.println(token);
 		}
 	}
-        
+        */
 }

@@ -9,7 +9,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class Main extends javax.swing.JFrame {
-    Token lex ;
+    Lexer lex;
     ArrayList<String>datos = new ArrayList<>();
     public String lineas ;
     private final JFileChooser openFile;
@@ -128,7 +128,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
-      
+      ArrayList<Lexer.Token> tokens = lex.lex(lineas);
+		for(Lexer.Token token:tokens) {
+			System.out.println(token);
+		}
     }//GEN-LAST:event_botonEjecutarActionPerformed
 
     /**
