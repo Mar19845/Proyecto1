@@ -3,14 +3,14 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 /**
  * @author Usuario Dell
- * Función Lexer trabajará con un String
+ * Funciï¿½n Lexer trabajarï¿½ con un String
  * Se deben definir los tipos de tokens a esperar
  * Number
 	`-?[0-9]+` De menos infinino a mas infinito.
 	Binary Operator
-	`[*|/|+|-]` Todas las operaciones aritméticas básicas.
+	`[*|/|+|-]` Todas las operaciones aritmï¿½ticas bï¿½sicas.
 	Whitespace
-	`[ \t\f\r\n]+` Espcios en blanco, tabs. Serán ignorados.
+	`[ \t\f\r\n]+` Espcios en blanco, tabs. Serï¿½n ignorados.
  */
 public class Lexer {
 	public static enum TokenType{
@@ -45,7 +45,7 @@ public class Lexer {
 		//Los tokens a retornar
 		ArrayList<Token> tokens = new ArrayList<Token>();
 		
-		//Lógica lexer
+		//Lï¿½gica lexer
 		StringBuffer tokenPatternsBuffer = new StringBuffer();
 		for(TokenType tokenType : TokenType.values())
 			tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
@@ -103,7 +103,7 @@ public class Lexer {
 		return tokens;
 	}
 	
-	
+	/**
 	public static void main(String[] args) {
 		String input = "11 + 22 - 33 * AAA = () . {} defun";
 		
@@ -113,4 +113,5 @@ public class Lexer {
 			System.out.println(token);
 		}
 	}
+        */
 }
