@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -105,10 +107,11 @@ public class Main extends javax.swing.JFrame {
                 lector = new BufferedReader(new FileReader(openFile.getSelectedFile()));
                 FileName = openFile.getName(openFile.getSelectedFile());
                 //labelNombreArchivo.setText(FileName);
-                labelNombreArchivo.setText("si funciona");
+                labelNombreArchivo.setText(FileName);
                 while(lector.ready()){
                     lineas = lector.readLine();
                     datos.add(lineas);
+                    Lexer.mostrar(lector);
                 }
                 codigo = datos.toString();
               
@@ -133,19 +136,9 @@ public class Main extends javax.swing.JFrame {
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
         
         ArrayList<Lexer.Token> tokens = Lexer.lex(codigo);
-        //for(Lexer.Token token:tokens) {
-            //System.out.println(token);
-        //}
-        System.out.println("Ingrese temperatura");
-        Scanner lector = new Scanner (System.in);
-     
-        double grados;
-        grados = lector.nextDouble();
-        // hacemos los calculos
-        double celsius=grados-32*0.55555556;
-        // mostramos el resultado
-        System.out.println("El resultado es "+celsius);
-
+        for(Lexer.Token token:tokens) {
+            System.out.println(token);
+        }      
     }//GEN-LAST:event_botonEjecutarActionPerformed
 
     /**
