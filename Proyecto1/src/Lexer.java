@@ -132,7 +132,7 @@ public class Lexer {
 		Stack<String> list = new Stack<String>();
 		String a,b,valor;
 		String CadTex;
-	
+	/*aqui necesito saber la direccion del archivo*/
 		FileReader f = new FileReader(direccion);
 			BufferedReader r = new BufferedReader(f);
 			while((CadTex = r.readLine())!=null) {
