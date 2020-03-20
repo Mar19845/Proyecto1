@@ -157,7 +157,6 @@ public class Lexer {
             }
             list.push(CadTex);
             System.out.println(list);
-            System.out.println("Funciona esto?");
         }
         //r.close();
     }
