@@ -1,6 +1,10 @@
 /**
  * File: Patrones_Lexer
  * 
+ * @author Juan Marroquin
+ * @author Carlos Raxtum
+ * @author Mario de Leon
+ *
  * Separa expresiones que representan strings en un programa Lisp
  */
 
