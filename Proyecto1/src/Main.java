@@ -9,10 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.util.Map;
 
 
 public class Main extends javax.swing.JFrame {
     Lexer lex;
+    Lexic lexic = new Lexic();
     String codigo;
     ArrayList<String>datos = new ArrayList<>();
     public String lineas ;
@@ -111,7 +113,7 @@ public class Main extends javax.swing.JFrame {
                 while(lector.ready()){
                     lineas = lector.readLine();
                     datos.add(lineas);
-                    Lexer.mostrar(lector);
+                    //Lexer.mostrar(lector);
                 }
                 codigo = datos.toString();
               
@@ -136,9 +138,17 @@ public class Main extends javax.swing.JFrame {
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
         
         ArrayList<Lexer.Token> tokens = Lexer.lex(codigo);
+        /**
         for(Lexer.Token token:tokens) {
             System.out.println(token);
-        }      
+        }*/
+        ArrayList<String>toki = lexic.Tokens(codigo);
+        /**
+        for(int i=0;i<toki.size();i++) {
+            System.out.println(toki.pop());
+        }
+        */
+        System.out.println(lexic.Ejecutar(toki));
     }//GEN-LAST:event_botonEjecutarActionPerformed
 
     /**

@@ -4,10 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.Map;
 
 /**
  * @author Usuario Dell Funcion Lexer trabajar con un String Se deben definir
@@ -20,8 +23,8 @@ public class Lexer {
 
     public static enum TokenType {
 
-        NUMBER("-?[0-9]+"), OPERACIONES("[=|*|/|+|-]"), WHITESPACE("[ ]"), LITERAL("[a-zA-Z0-9]+"),
-        LETTER("[a-zA-Z]"), PARENTESIS("[()]"), IF("[if]"), COMMA("[,]"), BRACE("[{}]"),
+        NUMBER("-?[0-9]+"), OPERACIONES("[=|*|/|+|-]"), WHITESPACE("[       ]"), LITERAL("[a-zA-Z0-9]+"),
+        LETTER("[a-zA-Z]"), PARENTESISIZQ("[(]"), IF("[if]"), PARENTESISDER("[)]"), COMMA("[,]"), BRACE("[{}]"),
         COMENTARIO("[;]"), PERIOD("[.]"), DEFUN("[defunDEFUN]"), CAR("[car]"), CDR("[cdr]"),
         COND("[condCOND]"), CONS("cons"), ENDP("[endp]"), EQ("eq"), EQUAL("[equal]"), LIST("[list]"), QUOTE("[quote]");
 
@@ -51,6 +54,7 @@ public class Lexer {
     public static ArrayList<Token> lex(String input) {
         //Los tokens a retornar
         ArrayList<Token> tokens = new ArrayList<>();
+        Map<String,Token> toki;
 
         //Lï¿½gica lexer
         StringBuffer tokenPatternsBuffer = new StringBuffer();
@@ -62,21 +66,20 @@ public class Lexer {
         //Relacionar tokens con su tipo
         Matcher matcher = tokenPatterns.matcher(input);
         while (matcher.find()) {
-            if (matcher.group(TokenType.NUMBER.name()) != null) {
-                tokens.add(new Token(TokenType.NUMBER, matcher.group(TokenType.NUMBER.name())));
-            } else if (matcher.group(TokenType.OPERACIONES.name()) != null) {
+            //if (matcher.group(TokenType.NUMBER.name()) != null) {
+              // tokens.add(new Token(TokenType.NUMBER, matcher.group(TokenType.NUMBER.name())));
+             if (matcher.group(TokenType.OPERACIONES.name()) != null) {
                 tokens.add(new Token(TokenType.OPERACIONES, matcher.group(TokenType.OPERACIONES.name())));
             } else if (matcher.group(TokenType.WHITESPACE.name()) != null) {
                 //Se ignoran los whitespace y tabs
-
-            } else if (matcher.group(TokenType.LETTER.name()) != null) {
-                tokens.add(new Token(TokenType.LETTER, matcher.group(TokenType.LETTER.name())));
             } else if (matcher.group(TokenType.LITERAL.name()) != null) {
                 tokens.add(new Token(TokenType.LITERAL, matcher.group(TokenType.LITERAL.name())));
-                continue;
-            } else if (matcher.group(TokenType.PARENTESIS.name()) != null) {
-                tokens.add(new Token(TokenType.PARENTESIS, matcher.group(TokenType.PARENTESIS.name())));
-            } else if (matcher.group(TokenType.IF.name()) != null) {
+            }else if (matcher.group(TokenType.PARENTESISIZQ.name()) != null) {
+                tokens.add(new Token(TokenType.PARENTESISIZQ, matcher.group(TokenType.PARENTESISIZQ.name())));
+            }else if (matcher.group(TokenType.PARENTESISDER.name()) != null) {
+                tokens.add(new Token(TokenType.PARENTESISDER, matcher.group(TokenType.PARENTESISDER.name())));
+            }
+            else if (matcher.group(TokenType.IF.name()) != null) {
                 tokens.add(new Token(TokenType.IF, matcher.group(TokenType.IF.name())));
             } else if (matcher.group(TokenType.COMMA.name()) != null) {
                 tokens.add(new Token(TokenType.COMMA, matcher.group(TokenType.COMMA.name())));
@@ -113,64 +116,21 @@ public class Lexer {
         return tokens;
     }
 
-    public static void mostrar(BufferedReader R1) throws FileNotFoundException, IOException {
-
-        Stack<String> list = new Stack<String>();
-        String a, b, valor;
+    public static void Ejecutar(ArrayList<Token> Tokio)  {
+        Stack<String> lista = new Stack<String>();
+        String funcion= "";
+        Map<String,String> carta = new LinkedHashMap<String,String>();
         String CadTex;
-        /*aqui necesito saber la direccion del archivo*/
-        //FileReader f = new FileReader(direccion);
-        //BufferedReader r = new BufferedReader(f);
-        while ((CadTex = R1.readLine()) != null) {
-            System.out.println(CadTex);
-            String[] Arraylist = CadTex.split(" ");
-            for (int i = 0; i < CadTex.length(); i++) {
-                switch (Arraylist[i]) {
-                    case "+":
-                        a = list.pop();
-                        b = list.pop();
-                        valor = String.valueOf(Integer.valueOf(a) + Integer.valueOf(b));
-                        list.push(valor);
-                        break;
-                    case "-":
-                        a = list.pop();
-                        b = list.pop();
-                        valor = String.valueOf(Integer.valueOf(a) + Integer.valueOf(b));
-                        list.push(valor);
-                        break;
-                    case "*":
-                        a = list.pop();
-                        b = list.pop();
-                        valor = String.valueOf(Integer.valueOf(a) + Integer.valueOf(b));
-                        list.push(valor);
-                        break;
-                    case "/":
-                        a = list.pop();
-                        b = list.pop();
-                        valor = String.valueOf(Integer.valueOf(a) + Integer.valueOf(b));
-                        list.push(valor);
-                        break;
-                    default:
-                        list.push(Arraylist[i]);
-                        break;
-                }
-            }
-            list.push(CadTex);
-            System.out.println(list);
+        for(int i=0; i < Tokio.size(); i++){
+            lista.push(Tokio.get(i).data);
+            carta.put(Tokio.get(i).type.name(), Tokio.get(i).data);  
         }
-        //r.close();
-    }
-
-    /**
-     * public static void main(String[] args) { String input = "11 + 22 - 33 *
-     * AAA = () . {} defun";
-     *
-     * //Crear e imprimir tokens ArrayList<Token> tokens = lex(input); for(Token
-     * token:tokens) { System.out.println(token); } }
-     */
-
-    private void println(String string) {
-	// TODO Auto-generated method stub
-
+        carta.get("COMENTARIO");
+        // definir funcion
+        if(carta.containsKey("PARENTESISIZQ")&& carta.containsKey("PARENTESISDER")){
+            for(int a=0;a<carta.size();a++){
+                System.out.println(funcion + carta.values().toString());
+            }
+        }
     }
 }
