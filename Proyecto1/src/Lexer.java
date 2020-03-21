@@ -56,7 +56,7 @@ public class Lexer {
         ArrayList<Token> tokens = new ArrayList<>();
         Map<String,Token> toki;
 
-        //Lï¿½gica lexer
+        //Logica lexer
         StringBuffer tokenPatternsBuffer = new StringBuffer();
         for (TokenType tokenType : TokenType.values()) {
             tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
@@ -68,7 +68,7 @@ public class Lexer {
         while (matcher.find()) {
             //if (matcher.group(TokenType.NUMBER.name()) != null) {
               // tokens.add(new Token(TokenType.NUMBER, matcher.group(TokenType.NUMBER.name())));
-             if (matcher.group(TokenType.OPERACIONES.name()) != null) {
+            }  if (matcher.group(TokenType.OPERACIONES.name()) != null) {
                 tokens.add(new Token(TokenType.OPERACIONES, matcher.group(TokenType.OPERACIONES.name())));
             } else if (matcher.group(TokenType.WHITESPACE.name()) != null) {
                 //Se ignoran los whitespace y tabs
@@ -110,8 +110,6 @@ public class Lexer {
             } else if (matcher.group(TokenType.QUOTE.name()) != null) {
                 tokens.add(new Token(TokenType.QUOTE, matcher.group(TokenType.QUOTE.name())));
             }
-
-        }
 
         return tokens;
     }

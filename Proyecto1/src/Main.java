@@ -137,7 +137,7 @@ public class Main extends javax.swing.JFrame {
 
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
         
-        ArrayList<Lexer.Token> tokens = Lexer.lex(codigo);
+        //ArrayList<Lexer.Token> tokens = Lexer.lex(codigo);
         /**
         for(Lexer.Token token:tokens) {
             System.out.println(token);
@@ -148,6 +148,7 @@ public class Main extends javax.swing.JFrame {
             System.out.println(toki.pop());
         }
         */
+        System.out.println("La respuesta a este programa es");
         System.out.println(lexic.Ejecutar(toki));
     }//GEN-LAST:event_botonEjecutarActionPerformed
 

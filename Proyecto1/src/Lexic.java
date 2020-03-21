@@ -42,7 +42,7 @@ public class Lexic {
             switch (lista.get(k)) {
                 case "TEMP":
                     System.out.println("Ingrese en grados farenheit lo que desea convertir: ");
-                    usuario = teclado.next();
+                    usuario = teclado.nextLine();
                     teclado.nextLine();
                     lista.set(k, usuario);
                 default:
