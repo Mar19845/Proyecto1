@@ -21,13 +21,124 @@ import java.util.Map;
  */
 public class Lexer {
 
+    /**
+     *
+     */
     public static enum TokenType {
 
-        NUMBER("-?[0-9]+"), OPERACIONES("[=|*|/|+|-]"), WHITESPACE("[       ]"), LITERAL("[a-zA-Z0-9]+"),
-        LETTER("[a-zA-Z]"), PARENTESISIZQ("[(]"), IF("[if]"), PARENTESISDER("[)]"), COMMA("[,]"), BRACE("[{}]"),
-        COMENTARIO("[;]"), PERIOD("[.]"), DEFUN("[defunDEFUN]"), CAR("[car]"), CDR("[cdr]"),
-        COND("[condCOND]"), CONS("cons"), ENDP("[endp]"), EQ("eq"), EQUAL("[equal]"), LIST("[list]"), QUOTE("[quote]");
+        /**
+         *
+         */
+        NUMBER("-?[0-9]+"),
 
+        /**
+         *
+         */
+        OPERACIONES("[=|*|/|+|-]"),
+
+        /**
+         *
+         */
+        WHITESPACE("[       ]"),
+
+        /**
+         *
+         */
+        LITERAL("[a-zA-Z0-9]+"),
+
+        /**
+         *
+         */
+        LETTER("[a-zA-Z]"),
+
+        /**
+         *
+         */
+        PARENTESISIZQ("[(]"),
+
+        /**
+         *
+         */
+        IF("[if]"),
+
+        /**
+         *
+         */
+        PARENTESISDER("[)]"),
+
+        /**
+         *
+         */
+        COMMA("[,]"),
+
+        /**
+         *
+         */
+        BRACE("[{}]"),
+
+        /**
+         *
+         */
+        COMENTARIO("[;]"),
+
+        /**
+         *
+         */
+        PERIOD("[.]"),
+
+        /**
+         *
+         */
+        DEFUN("[defunDEFUN]"),
+
+        /**
+         *
+         */
+        CAR("[car]"),
+
+        /**
+         *
+         */
+        CDR("[cdr]"),
+
+        /**
+         *
+         */
+        COND("[condCOND]"),
+
+        /**
+         *
+         */
+        CONS("cons"),
+
+        /**
+         *
+         */
+        ENDP("[endp]"),
+
+        /**
+         *
+         */
+        EQ("eq"),
+
+        /**
+         *
+         */
+        EQUAL("[equal]"),
+
+        /**
+         *
+         */
+        LIST("[list]"),
+
+        /**
+         *
+         */
+        QUOTE("[quote]");
+
+        /**
+         *
+         */
         public final String pattern;
 
         private TokenType(String pattern) {
@@ -35,11 +146,26 @@ public class Lexer {
         }
     }
 
+    /**
+     *
+     */
     public static class Token {
 
+        /**
+         *
+         */
         public TokenType type;
+
+        /**
+         *
+         */
         public String data;
 
+        /**
+         *
+         * @param type
+         * @param data
+         */
         public Token(TokenType type, String data) {
             this.type = type;
             this.data = data;
@@ -51,6 +177,11 @@ public class Lexer {
         }
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     public static ArrayList<Token> lex(String input) {
         //Los tokens a retornar
         ArrayList<Token> tokens = new ArrayList<>();
@@ -114,6 +245,10 @@ public class Lexer {
         return tokens;
     }
 
+    /**
+     *
+     * @param Tokio
+     */
     public static void Ejecutar(ArrayList<Token> Tokio)  {
         Stack<String> lista = new Stack<String>();
         String funcion= "";

@@ -11,16 +11,27 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.Map;
 
-
+/**
+ *
+ * @author Juan Marroquin
+ */
 public class Main extends javax.swing.JFrame {
     Lexer lex;
     Lexic lexic = new Lexic();
     String codigo;
     ArrayList<String>datos = new ArrayList<>();
+
+    /**
+     *
+     */
     public String lineas ;
     private final JFileChooser openFile;
     private BufferedReader lector;
     String FileName;
+
+    /**
+     *
+     */
     public Main() {
         initComponents();
         openFile = new JFileChooser();

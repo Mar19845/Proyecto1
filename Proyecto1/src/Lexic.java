@@ -17,6 +17,9 @@ public class Lexic {
     int x;
     String a, b, valor, usuario;
 
+    /**
+     *
+     */
     public Lexic() {
     }
 
@@ -36,6 +39,11 @@ public class Lexic {
         return salida;
     }
 
+    /**
+     *
+     * @param lista
+     * @return
+     */
     public String Ejecutar(ArrayList<String> lista) {
         String respuesta = "";
         for (int k = 0; k < lista.size(); k++) {
