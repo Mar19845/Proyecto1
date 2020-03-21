@@ -4,8 +4,10 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /**
- *
+ * 
  * @author Juan Marroquin
+ * @author Carlos Raxtum
+ * @author Mario de Leon
  */
 public class Lexic {
 
