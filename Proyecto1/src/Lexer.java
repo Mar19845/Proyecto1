@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author Juan Marroquin
+ * @author Carlos Raxtum
+ * @author Mario de Leon
+ */
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -15,8 +21,8 @@ import java.util.Map;
 /**
  * @author Usuario Dell Funcion Lexer trabajar con un String Se deben definir
  * los tipos de tokens a esperar Number `-?[0-9]+` De menos infinino a mas
- * infinito. Binary Operator `[*|/|+|-]` Todas las operaciones aritmï¿½ticas
- * bï¿½sicas. Whitespace `[ \t\f\r\n]+` Espcios en blanco, tabs. Serï¿½n
+ * infinito. Binary Operator `[*|/|+|-]` Todas las operaciones aritmÃ¯Â¿Â½ticas
+ * bÃ¯Â¿Â½sicas. Whitespace `[ \t\f\r\n]+` Espcios en blanco, tabs. SerÃ¯Â¿Â½n
  * ignorados.
  */
 public class Lexer {
@@ -50,13 +56,16 @@ public class Lexer {
             return String.format("(%s %s)", type.name(), data);
         }
     }
-
+    /**
+     * Determina que caracter es para momstrarlo
+     *
+     */
     public static ArrayList<Token> lex(String input) {
         //Los tokens a retornar
         ArrayList<Token> tokens = new ArrayList<>();
         Map<String,Token> toki;
 
-        //Lï¿½gica lexer
+        //LÃ¯Â¿Â½gica lexer
         StringBuffer tokenPatternsBuffer = new StringBuffer();
         for (TokenType tokenType : TokenType.values()) {
             tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
@@ -115,7 +124,10 @@ public class Lexer {
 
         return tokens;
     }
-
+    /**
+     * Ejecuta los tokens para realzar operacion
+     *
+     */
     public static void Ejecutar(ArrayList<Token> Tokio)  {
         Stack<String> lista = new Stack<String>();
         String funcion= "";
