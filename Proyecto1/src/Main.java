@@ -50,12 +50,15 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         botonBuscar = new javax.swing.JButton();
         labelNombreArchivo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         botonEjecutar = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,6 +189,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton botonEjecutar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel labelNombreArchivo;
     // End of variables declaration//GEN-END:variables
  
